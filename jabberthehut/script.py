@@ -37,7 +37,8 @@ def main(argv=sys.argv):
 
     config.setdefault('nick', 'jabba')
     if 'password' not in config:
-        config['password'] = getpass.getpass()
+        config['password'] = getpass.getpass(
+            "Password for {}: ".format(config['jid']))
 
     config['handlers'] = [resolve(name) for name in config['handlers'].split()]
 
