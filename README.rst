@@ -2,10 +2,13 @@
 jabber-the-hut
 ==============
 
-An experimental bot for Jabber chat rooms.  Requires Python 3.2 or better.
+An experimental bot for Jabber chat rooms.
 
 Install
 =======
+
+``jaber-the-hut`` requires Python 3.x, and recent versions of libxml2
+and libxslt.
 
 To install ``jabber-the-hut`` inside a ``virtualenv``::
 
