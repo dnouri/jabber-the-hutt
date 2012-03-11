@@ -12,7 +12,7 @@ and libxslt.
 
 To install ``jabber-the-hut`` inside a ``virtualenv``::
 
-  virtualenv jabber-the-hut
+  virtualenv -p python3 jabber-the-hut
   cd jabber-the-hut
   bin/pip install jabber-the-hut
 
@@ -20,7 +20,7 @@ Or from the source::
 
   git clone https://github.com/dnouri/jabber-the-hut
   cd jabber-the-hut
-  virtualenv .
+  virtualenv -p python3 .
   bin/python setup.py develop
 
 Run
