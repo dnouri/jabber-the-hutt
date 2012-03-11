@@ -53,21 +53,35 @@ def _extract_command(bot, msg):
 
 def html_title(bot, msg):
     """
-      >>> extract_html_title(
-      ...     None,
+      >>> class Bot:
+      ...     cache = {}
+      >>> bot = Bot()
+      >>> html_title(
+      ...     bot,
       ...     {'body': 'Check this http://danielnouri.org out'},
       ...     )
       ["Daniel Nouri's Homepage · http://danielnouri.org"]
-      >>> extract_html_title(None, {'body': 'Nothing to see here'})
+      >>> html_title(
+      ...     bot,
+      ...     {'body': 'Check this http://danielnouri.org out'},
+      ...     )
+      []
+      >>> html_title(bot, {'body': 'Nothing to see here'})
       []
     """
+    seen = bot.cache.setdefault('html_title.seen', [])
     messages = []
     for url in grab_urls(msg['body']):
+        if url in seen:
+            continue
+        else:
+            seen.append(url)
         try:
             document = pq(url=url)
         except URLError:
             continue
         messages.append("{} · {}".format(document('title').text(), url))
+    seen[:-10] = []
     return messages
 
 @cmd('echo')

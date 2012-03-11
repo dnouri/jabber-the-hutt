@@ -12,6 +12,7 @@ class Bot(ClientXMPP):
         self.password = password
         self.room = room
         self.nick = nick
+        self.cache = {}
         self.__dict__.update(kwargs)
 
         self.add_event_handler("session_start", self.session_start)
