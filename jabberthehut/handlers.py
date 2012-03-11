@@ -1,5 +1,6 @@
 from string import whitespace
 from urllib.error import URLError
+from urllib.parse import urlparse
 
 from pyquery import PyQuery as pq
 
@@ -60,13 +61,21 @@ def html_title(bot, msg):
       ...     bot,
       ...     {'body': 'Check this http://danielnouri.org out'},
       ...     )
-      ["Daniel Nouri's Homepage · http://danielnouri.org"]
+      ["Daniel Nouri's Homepage · danielnouri.org"]
       >>> html_title(
       ...     bot,
-      ...     {'body': 'Check this http://danielnouri.org out'},
+      ...     {'body': 'http://docs.python.org/py3k/tutorial/'},
+      ...     )
+      ['The Python Tutorial — Python v3.2.2 documentation · docs.python.org']
+      >>> html_title(
+      ...     bot,
+      ...     {'body': 'http://danielnouri.org'},
       ...     )
       []
-      >>> html_title(bot, {'body': 'Nothing to see here'})
+      >>> html_title(
+      ...     bot,
+      ...     {'body': 'http://danielnouri.org/favicon.ico'},
+      ...     )
       []
     """
     seen = bot.cache.setdefault('html_title.seen', [])
@@ -80,7 +89,13 @@ def html_title(bot, msg):
             document = pq(url=url)
         except URLError:
             continue
-        messages.append("{} · {}".format(document('title').text(), url))
+        try:
+            document_title = document('title').text()
+        except AttributeError:
+            continue
+        if document_title:
+            netloc = urlparse(url).netloc
+            messages.append("{} · {}".format(document_title, netloc))
     seen[:-10] = []
     return messages
 
