@@ -8,11 +8,11 @@ Install
 =======
 
 ``jaber-the-hut`` requires Python 3.x, and recent versions of libxml2
-and libxslt.
+and libxslt, along with development headers.
 
 To satisfy these dependenices on a Debian system, do::
 
-  sudo apt-get install python3 libxml2-dev libxslt-dev
+  sudo apt-get install python3 python3-dev libxml2-dev libxslt-dev
 
 To then install ``jabber-the-hut`` itself inside a ``virtualenv``::
 
