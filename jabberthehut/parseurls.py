@@ -10,7 +10,7 @@ def grab_urls(text):
     """
     return url_re.findall(text)
 
-urls = '(?: %s)' % '|'.join("""http telnet gopher file wais
+urls = '(?: %s)' % '|'.join("""http https telnet gopher file wais
 ftp""".split())
 ltrs = r'\w'
 gunk = r'/#~:.?+=&%@!\-'
