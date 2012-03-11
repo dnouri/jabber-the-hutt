@@ -12,7 +12,10 @@ except IOError:
     README = CHANGES = ''
 
 install_requires = [
+    'pyquery',
+    'pytest',
     'sleekxmpp',
+    'zope.dottedname',
     ]
 
 setup(name='jabber-the-hut',
@@ -33,6 +36,8 @@ setup(name='jabber-the-hut',
       zip_safe=False,
       install_requires=install_requires,
       entry_points="""
+      [console_scripts]
+      jabber-the-hut = jabberthehut.script:main
       # -*- Entry points: -*-
       """,
       )
