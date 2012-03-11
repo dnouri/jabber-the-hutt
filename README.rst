@@ -29,7 +29,7 @@ Run
 Installation creates a ``jabber-the-hut`` console script.  This script
 expects a configuration file as its first argument::
 
-  $ jabber-the-hut thehut.ini
+  $ bin/jabber-the-hut thehut.ini
 
 Your configuration file should look something like this::
 
