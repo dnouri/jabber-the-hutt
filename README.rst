@@ -10,17 +10,24 @@ Install
 ``jaber-the-hut`` requires Python 3.x, and recent versions of libxml2
 and libxslt.
 
-To install ``jabber-the-hut`` inside a ``virtualenv``::
+To satisfy these dependenices on a Debian system, do::
 
-  virtualenv -p python3 jabber-the-hut
+  sudo apt-get install python3 libxml2-dev libxslt-dev
+
+To then install ``jabber-the-hut`` itself inside a ``virtualenv``::
+
+  wget https://raw.github.com/pypa/virtualenv/master/virtualenv.py
+  mkdir jabber-the-hut
   cd jabber-the-hut
+  python3 virtualenv.py .
   bin/pip install jabber-the-hut
 
-Or from the source::
+Alternatively, you can install ``jabber-the-hut`` from the source::
 
   git clone https://github.com/dnouri/jabber-the-hut
   cd jabber-the-hut
-  virtualenv -p python3 .
+  wget https://raw.github.com/pypa/virtualenv/master/virtualenv.py
+  python3 virtualenv.py .
   bin/python setup.py develop
 
 Run
