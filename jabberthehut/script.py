@@ -33,7 +33,7 @@ def main(argv=sys.argv):
             )
 
     config = DEFAULTS.copy()
-    config.update(parser[parser.sections()[0]])
+    config.update(dict(parser.items(parser.sections()[0])))
 
     config.setdefault('nick', 'jabba')
     if 'password' not in config:
