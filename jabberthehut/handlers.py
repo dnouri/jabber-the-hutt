@@ -6,9 +6,12 @@ from .parseurls import grab_urls
 
 def extract_html_title(bot, msg):
     """
-      >>> extract_html_title(None, 'Check this http://danielnouri.org out')
+      >>> extract_html_title(
+      ...     None,
+      ...     {'body': 'Check this http://danielnouri.org out'},
+      ...     )
       ["Daniel Nouri's Homepage · http://danielnouri.org"]
-      >>> extract_html_title(None, 'Nothing to see here')
+      >>> extract_html_title(None, {'body': 'Nothing to see here'})
       []
     """
     messages = []
