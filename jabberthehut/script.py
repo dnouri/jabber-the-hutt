@@ -9,7 +9,11 @@ from zope.dottedname.resolve import resolve
 from jabberthehut.bot import Bot
 
 DEFAULTS = {
-    'handlers': 'jabberthehut.handlers.extract_html_title',
+    'handlers': ' '.join([
+        'jabberthehut.handlers.html_title',
+        'jabberthehut.handlers.echo',
+        'jabberthehut.handlers.source',
+        ]),
     }
 
 def main(argv=sys.argv):
@@ -31,7 +35,7 @@ def main(argv=sys.argv):
     config = DEFAULTS.copy()
     config.update(parser[parser.sections()[0]])
 
-    config.setdefault('nick', 'jabber-the-hut')
+    config.setdefault('nick', 'jabba')
     if 'password' not in config:
         config['password'] = getpass.getpass()
 
