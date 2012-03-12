@@ -134,11 +134,20 @@ def urban(bot, msg, arg):
       >>> print(urban(bot, {'body': 'jabba: urban foo'}))
       An term used for unimportant variables in programming when the programmer is too lazy to think of an actual name.  The origin of such word is described in detail in RFC 3092.
       int foo; foo = 2 + 2; cout << foo;
+      >>> print(urban(bot, {'body': 'jabba: urban 2 foo'}))
+      A contracted version of the word 'fool'. The word origionated with Mr.T. Due to the extended contact with cheap substitute gold, he can no longer tell the difference between anybody he meets. In order to save himself the humiliation of asking who he's talking to, he simply refers to anyone and every one as 'foo' or 'sucka'.
+      "You crazy foo!" "Dial 1-800-COLLECT, foo!"
     """
+    num_child = 0
+    try:
+        num_child = int(arg.split(' ', 1)[0]) - 1
+        arg = arg.split(' ', 1)[-1]
+    except ValueError:
+        pass
     url = 'http://www.urbandictionary.com/define.php?' + urlencode({'term': arg})
     document = pq(url=url)
-    text = pq(document('.definition:first')).text()
-    text_example = pq(document('.example:first')).text()
+    text = pq(document('.definition:eq({})'.format(num_child))).text()
+    text_example = pq(document('.example:eq({})'.format(num_child))).text()
     if text:
         if text_example:
             text = '{}\n{}'.format(text, text_example)
