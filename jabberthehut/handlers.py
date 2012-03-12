@@ -122,4 +122,4 @@ def fortune(bot, msg, arg):
     """
     process = Popen("fortune", stdout=PIPE, shell=True)
     os.waitpid(process.pid, 0)
-    return process.communicate()[0].decode('utf-8')
+    return '\n' + process.communicate()[0].decode('utf-8').strip()
