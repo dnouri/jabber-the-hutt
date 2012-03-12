@@ -131,8 +131,9 @@ def urban(bot, msg, arg):
       >>> class Bot:
       ...     nick = 'jabba'
       >>> bot = Bot()
-      >>> urban(bot, {'body': 'jabba: urban foo'})
-      'An term used for unimportant variables in programming when the programmer is too lazy to think of an actual name.  The origin of such word is described in detail in RFC 3092.\nint foo; foo = 2 + 2; cout << foo;'
+      >>> print(urban(bot, {'body': 'jabba: urban foo'}))
+      An term used for unimportant variables in programming when the programmer is too lazy to think of an actual name.  The origin of such word is described in detail in RFC 3092.
+      int foo; foo = 2 + 2; cout << foo;
     """
     url = 'http://www.urbandictionary.com/define.php?' + urlencode({'term': arg})
     document = pq(url=url)

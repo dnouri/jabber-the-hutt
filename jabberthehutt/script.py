@@ -6,21 +6,21 @@ import sys
 
 from zope.dottedname.resolve import resolve
 
-from jabberthehut.bot import Bot
+from jabberthehutt.bot import Bot
 
 DEFAULTS = {
     'handlers': ' '.join([
-        'jabberthehut.handlers.html_title',
-        'jabberthehut.handlers.echo',
-        'jabberthehut.handlers.source',
-        'jabberthehut.handlers.fortune',
-        'jabberthehut.handlers.urban',
+        'jabberthehutt.handlers.html_title',
+        'jabberthehutt.handlers.echo',
+        'jabberthehutt.handlers.source',
+        'jabberthehutt.handlers.fortune',
+        'jabberthehutt.handlers.urban',
         ]),
     }
 
 def main(argv=sys.argv):
     if len(argv) == 1:
-        config_filename = os.path.join([os.getcwd(), 'jabber-the-hut.ini'])
+        config_filename = os.path.join([os.getcwd(), 'hutt.ini'])
     else:
         config_filename = argv[1]
 

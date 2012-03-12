@@ -18,7 +18,7 @@ install_requires = [
     'zope.dottedname',
     ]
 
-setup(name='jabber-the-hut',
+setup(name='jabber-the-hutt',
       version=version,
       description="An experimental bot for Jabber chat rooms.",
       long_description='\n\n'.join([README, CHANGES]),
@@ -29,7 +29,7 @@ setup(name='jabber-the-hut',
       keywords='xmpp jabber bot chat',
       author='Daniel Nouri',
       author_email='daniel.nouri@gmail.com',
-      url='https://github.com/dnouri/jabber-the-hut',
+      url='https://github.com/dnouri/jabber-the-hutt',
       license='MIT',
       packages=find_packages(),
       include_package_data=True,
@@ -37,7 +37,7 @@ setup(name='jabber-the-hut',
       install_requires=install_requires,
       entry_points="""
       [console_scripts]
-      jabber-the-hut = jabberthehut.script:main
+      jabber-the-hutt = jabberthehutt.script:main
       # -*- Entry points: -*-
       """,
       )
