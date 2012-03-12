@@ -110,7 +110,7 @@ def echo(bot, msg, arg):
 
 @cmd('source')
 def source(bot, msg, arg):
-    return 'https://github.com/dnouri/jabber-the-hut'
+    return 'https://github.com/dnouri/jabber-the-hutt'
 
 @cmd('fortune')
 def fortune(bot, msg, arg):
