@@ -14,6 +14,7 @@ DEFAULTS = {
         'jabberthehut.handlers.echo',
         'jabberthehut.handlers.source',
         'jabberthehut.handlers.fortune',
+        'jabberthehut.handlers.urban',
         ]),
     }
 

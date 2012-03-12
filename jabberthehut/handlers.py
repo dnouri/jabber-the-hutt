@@ -3,6 +3,7 @@ import os
 from subprocess import Popen
 from subprocess import PIPE
 from urllib.error import URLError
+from urllib.parse import urlencode
 from urllib.parse import urlparse
 
 from pyquery import PyQuery as pq
@@ -123,3 +124,18 @@ def fortune(bot, msg, arg):
     process = Popen("fortune", stdout=PIPE, shell=True)
     os.waitpid(process.pid, 0)
     return '\n' + process.communicate()[0].decode('utf-8').strip()
+
+@cmd('urban')
+def urban(bot, msg, arg):
+    """
+      >>> class Bot:
+      ...     nick = 'jabba'
+      >>> bot = Bot()
+      >>> urban(bot, {'body': 'jabba: urban foo'})
+      'An term used for unimportant variables in programming when the programmer is too lazy to think of an actual name.  The origin of such word is described in detail in RFC 3092.'
+    """
+    url = 'http://www.urbandictionary.com/define.php?' + urlencode({'term': arg})
+    document = pq(url=url)
+    text = pq(document('.definition:first')).text()
+    if text:
+        return text
