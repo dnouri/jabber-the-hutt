@@ -13,6 +13,7 @@ DEFAULTS = {
         'jabberthehut.handlers.html_title',
         'jabberthehut.handlers.echo',
         'jabberthehut.handlers.source',
+        'jabberthehut.handlers.fortune',
         ]),
     }
 

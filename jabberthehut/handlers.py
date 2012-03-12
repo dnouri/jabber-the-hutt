@@ -1,4 +1,7 @@
-from string import whitespace
+import functools
+import os
+from subprocess import Popen
+from subprocess import PIPE
 from urllib.error import URLError
 from urllib.parse import urlparse
 
@@ -22,6 +25,7 @@ def cmd(name):
       >>> mycommand(bot, {'body': 'mycommand do'})
     """
     def decorator(func):
+        @functools.wraps(func)
         def wrapper(bot, msg):
             result = _extract_command(bot, msg)
             if result and result[0].lower() == name:
@@ -106,3 +110,16 @@ def echo(bot, msg, arg):
 @cmd('source')
 def source(bot, msg, arg):
     return 'https://github.com/dnouri/jabber-the-hut'
+
+@cmd('fortune')
+def fortune(bot, msg, arg):
+    """
+      >>> class Bot:
+      ...     nick = 'jabba'
+      >>> bot = Bot()
+      >>> isinstance(fortune(bot, {'body': 'jabba: fortune'}), str)
+      True
+    """
+    process = Popen("fortune", stdout=PIPE, shell=True)
+    os.waitpid(process.pid, 0)
+    return process.communicate()[0].decode('utf-8')
