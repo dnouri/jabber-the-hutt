@@ -10,6 +10,8 @@ from pyquery import PyQuery as pq
 
 from .parseurls import grab_urls
 
+CMD_MARKER = ','
+
 def cmd(name):
     """
       >>> class Bot:
@@ -23,13 +25,16 @@ def cmd(name):
       Called with "do"
       >>> mycommand(bot, {'body': 'jabba: mycommand'})
       Called with ""
+      >>> mycommand(bot, {'body': ', mycommand do'})
+      Called with "do"
       >>> mycommand(bot, {'body': 'mycommand do'})
     """
     def decorator(func):
         @functools.wraps(func)
         def wrapper(bot, msg):
             result = _extract_command(bot, msg)
-            if result and result[0].lower() == name:
+            if result and (
+                result[0].lower() == name or result[0].lower() == CMD_MARKER):
                 arg = None
                 if len(result) > 1:
                     arg = result[1]
@@ -51,8 +56,11 @@ def _extract_command(bot, msg):
       >>> extr('jabba:')
       >>> extr('jabba')
       >>> extr('Nothing to see here')
+      >>> extr(", what's up")
+      ["what's", 'up']
     """
-    if msg['body'].lower().startswith(bot.nick):
+    body = msg['body']
+    if body.lower().startswith(bot.nick) or body.lower().startswith(CMD_MARKER):
         args = msg['body'].split()[1:]
         if args:
             return [args[0], ' '.join(args[1:])]
