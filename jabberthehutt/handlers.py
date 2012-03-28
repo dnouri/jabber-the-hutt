@@ -91,6 +91,7 @@ def html_title(bot, msg):
       ...     )
       []
     """
+    # ' <-- Emacs
     seen = bot.cache.setdefault('html_title.seen', [])
     messages = []
     for url in grab_urls(msg['body']):

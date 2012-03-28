@@ -41,6 +41,7 @@ class Bot(ClientXMPP):
                 except:
                     logger.logException(
                         'handler {} failed.'.format(handler.__name__))
+                    continue
                 if not result:
                     continue
                 if isinstance(result, str):
